@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content_table %}
+    <div class="table-responsive">
+        <table class="table text-center">
+            <thead>
+            <tr>
+                {% for head in total_head %}
+                    <th>{{ head }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for info in total_info %}
+                <td>{{ info }}</td>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="table-responsive">
+        <table class="table text-center">
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>上车时间</th>
+                <th>上车站</th>
+                <th>--></th>
+                <th>下车站</th>
+                <th>下车时间</th>
+                <th>经过</th>
+                <th>花费</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in rows %}
+                <tr>
+                    {% for item in row %}
+                        <td>{{ item }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

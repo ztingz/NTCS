@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,shrink-to-fit=no,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>全国交通咨询模拟系统</title>
+    <!-- Bootstrap框架CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datetimepicker.min.css' %}" type="text/css">
+    <!--自定义CSS-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+</head>
+<body>
+<div class="jumbotron" style="background: none; padding-bottom: 5vw">
+    <div class="container">
+        <form class="row" action="/searchPath" enctype="multipart/form-data" method="post">
+            <div class="col-12"><a href="/"><h1 class="big-title">全国交通咨询模拟系统</h1></a> <br></div>
+            <fieldset class="form-group text-center col-12">
+                <label for="sel_auto" class="control-label">交通工具：</label>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="sel_auto" checked name="vehicle" value="auto">
+                    <label class="custom-control-label" for="sel_auto">自动</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="sel_train" {{ train }} name="vehicle"
+                           value="train">
+                    <label class="custom-control-label" for="sel_train">铁路</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" class="custom-control-input" id="sel_plane" {{ plane }} name="vehicle"
+                           value="plane">
+                    <label class="custom-control-label" for="sel_plane">飞机</label>
+                </div>
+                <span class="text-danger">{{ errors.vehicle }}</span>
+            </fieldset>
+            <fieldset class="form-group col-md-3 col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-prepend input-group-text" id="starting">出发地</span>
+                    <input type="text" class="form-control" placeholder="例如：上海" aria-describedby="starting"
+                           name="starting" value={{ starting }}>
+                </div>
+                <span class="text-danger">{{ errors.starting }}</span>
+            </fieldset>
+            <fieldset class="form-group col-md-3 col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-prepend input-group-text" id="destination">目的地</span>
+                    <input type="text" class="form-control" placeholder="例如：北京" aria-describedby="destination"
+                           name="destination" value={{ destination }}>
+                </div>
+                <span class="text-danger" style="list-style: none">{{ errors.destination }}</span>
+            </fieldset>
+            <fieldset class="form-group col-md-3 col-sm-12">
+                <div class="input-group date form_datetime" data-date="" data-date-format="yyyy-mm-dd hh:ii:ss"
+                     data-link-field="dtp_input1" data-link-format="yyyy-mm-dd hh:ii:ss">
+                    <span class="input-group-prepend input-group-text" id="departure_time">出发日期</span>
+                    <input class="form-control" type="text" readonly name="departure_time" value='{{ departure_time }}'>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <span class="text-danger">{{ errors.datetime }}</span>
+            </fieldset>
+            <fieldset class="form-group col-md-3 col-sm-12">
+                <select class="form-control" id="sel_strategy" name="strategy">
+                    <option value="time" {{ time }}>最快</option>
+                    <option value="money" {{ money }}>最省钱</option>
+                </select>
+                <span class="text-danger">{{ errors.strategy }}</span>
+            </fieldset>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-block">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="jumbotron" style="background: none; padding-top: 0;">
+    <div class="container">
+        {% block content_table %}{% endblock %}
+    </div>
+</div>
+<!--版权声明-->
+<footer class="copyright">
+    <p class="mb-auto">Copyright ©2018 桂林电子科技大学 詹廷章 </p>
+</footer>
+<!-- 框架JS -->
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-datetimepicker.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1,
+        startDate: '{{ start_date }}',
+    });
+</script>
+</body>
+</html>

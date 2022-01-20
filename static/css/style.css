@@ -1,0 +1,39 @@
+a > h1:hover {
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+@media (min-width: 768px) {
+
+}
+
+@media (min-width: 992px) {
+    .copyright {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1030;
+    }
+}
+
+@media (min-width: 1200px) {
+
+}
+
+.big-title {
+    text-align: center;
+    color: #0c5460;
+    font-size: 3em;
+}
+
+.copyright {
+    padding: 24px 15px;
+    background-color: #111111;
+    color: #999999;
+    font-size: 13px;
+    text-align: center
+}
